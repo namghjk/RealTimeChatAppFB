@@ -11,7 +11,7 @@ import {
   import {useNavigation} from '@react-navigation/native';
   import uuid from 'react-native-uuid';
   import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-  // import firestore from '@react-native-firebase/firestore'
+  import firestore from '@react-native-firebase/firestore'
   
   
   
@@ -22,26 +22,26 @@ import {
     const [password, setPassword] = useState('');
     const [confirmPassword, setconfirmPassword] = useState('');
     const navigation = useNavigation();
-    // const registerUser = () => {
-    //   const userId = uuid.v4();
-    //   firestore()
-    //   .collection('users')
-    //   .doc(userId)
-    //   .set({
-    //     name: name,
-    //     email: email,
-    //     password: password,
-    //     mobile: mobile,
-    //     userId: userId,
-    //   })
-    //   .then(res => {
-    //     console.log('user created ');
-    //     navigation.navigate('Login');
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
-    // };
+    const registerUser = () => {
+      const userId = uuid.v4();
+      firestore()
+      .collection('users')
+      .doc(userId)
+      .set({
+        name: name,
+        email: email,
+        password: password,
+        mobile: mobile,
+        userId: userId,
+      })
+      .then(res => {
+        console.log('user created ');
+        navigation.navigate('Login');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    };
   
     return (
       <SafeAreaView style={{flex: 1}}>
@@ -80,7 +80,7 @@ import {
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
-                // registerUser();
+                registerUser();
               }}>
               <View
                 style={{
