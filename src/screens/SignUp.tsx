@@ -36,12 +36,32 @@ import {
       })
       .then(res => {
         console.log('user created ');
-        navigation.navigate('Login');
+        navigation.navigate('SignIn');
       })
       .catch(error => {
         console.log(error);
       });
     };
+
+    const validate = () =>{
+      let isValid = true;
+      if (name == ''){
+        isValid = false
+      }
+      if (email == ''){
+        isValid = false
+      }
+      if (password == ''){
+        isValid = false
+      }
+      if (mobile == ''){
+        isValid = false
+      }
+      if(confirmPassword !=password){
+        isValid = false
+      }
+      return isValid
+    }
   
     return (
       <SafeAreaView style={{flex: 1}}>
@@ -80,7 +100,12 @@ import {
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
-                registerUser();
+                if(validate() == true){
+                  registerUser()
+                  Alert.alert("SignUp success")
+                }else{
+                  Alert.alert("Please enter correct data")
+                }
               }}>
               <View
                 style={{

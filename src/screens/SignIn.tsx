@@ -11,11 +11,23 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import firestore from '@react-native-firebase/firestore';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
+
+  const loginUser = () => {
+    firestore()
+      .collection('users')
+      .where('email', '==', password)
+      .get()
+      .then(res => {
+        console.log(JSON.stringify(res.docs[0].data()));
+      });
+  };
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <KeyboardAwareScrollView
@@ -35,7 +47,9 @@ const SignIn = () => {
             style={styles.textInput}
             value={password}
             onChangeText={txt => setPassword(txt)}></TextInput>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => {
+            loginUser()
+          }}>
             <View
               style={{
                 backgroundColor: '#f08080',
@@ -90,5 +104,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 20,
     fontSize: 20,
-  }
+  },
 });
