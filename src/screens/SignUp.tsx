@@ -120,7 +120,7 @@ import {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('SignIn');
+                navigation.goBack();
               }}>
               <Text style={styles.loginButton}>or SignIn</Text>
             </TouchableOpacity>

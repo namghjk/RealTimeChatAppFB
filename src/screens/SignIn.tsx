@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import * as React from 'react';
 import {
+  Alert,
   Keyboard,
   StyleSheet,
   Text,
@@ -21,10 +22,18 @@ const SignIn = () => {
   const loginUser = () => {
     firestore()
       .collection('users')
-      .where('email', '==', password)
+      .where('email', '==', email)
       .get()
       .then(res => {
-        console.log(JSON.stringify(res.docs[0].data()));
+        if (res.docs !== []) {
+          console.log(JSON.stringify(res.docs[0].data()));
+        } else {
+          Alert.alert('User not found');
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        Alert.alert('User not found');
       });
   };
 
@@ -47,9 +56,11 @@ const SignIn = () => {
             style={styles.textInput}
             value={password}
             onChangeText={txt => setPassword(txt)}></TextInput>
-          <TouchableOpacity style={styles.button} onPress={() => {
-            loginUser()
-          }}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              loginUser();
+            }}>
             <View
               style={{
                 backgroundColor: '#f08080',

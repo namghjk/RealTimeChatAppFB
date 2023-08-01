@@ -9,7 +9,7 @@ const Spalsh = () => {
   const navigation = useNavigation()
   useEffect(()=>{
    setTimeout(()=>{
-    navigation.navigate('SignUp')
+    navigation.navigate('SignIn')
    },2000)
   },[])
 
