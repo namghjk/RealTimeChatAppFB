@@ -5,6 +5,7 @@ import {Text, View} from 'react-native';
 import Spalsh from '../screens/Splash';
 import SignUp from '../screens/SignUp';
 import SignIn from '../screens/SignIn';
+import Main from '../screens/Main';
 
 const Stack = createStackNavigator();
 const AppNavigator = () => {
@@ -24,6 +25,11 @@ const AppNavigator = () => {
          <Stack.Screen
           name={'SignIn'}
           component={SignIn}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={'Main'}
+          component={Main}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import  { useEffect } from 'react';
 import * as React from 'react';
@@ -9,9 +10,18 @@ const Spalsh = () => {
   const navigation = useNavigation()
   useEffect(()=>{
    setTimeout(()=>{
-    navigation.navigate('SignIn')
+    checkLogin()
    },2000)
   },[])
+  
+  const checkLogin = async() =>{
+    const id = await AsyncStorage.getItem('USERID');
+    if (id != null){
+      navigation.navigate("Main");
+    } else {
+      navigation.navigate("SignIn")
+    }
+  }
 
   return (
     <SafeAreaView style={{flex: 1}}>
