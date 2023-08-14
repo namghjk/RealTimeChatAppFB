@@ -6,6 +6,7 @@ import Spalsh from '../screens/Splash';
 import SignUp from '../screens/SignUp';
 import SignIn from '../screens/SignIn';
 import Main from '../screens/Main';
+import Chat from '../screens/Chat';
 
 const Stack = createStackNavigator();
 const AppNavigator = () => {
@@ -22,7 +23,7 @@ const AppNavigator = () => {
           component={SignUp}
           options={{headerShown: false}}
         />
-         <Stack.Screen
+        <Stack.Screen
           name={'SignIn'}
           component={SignIn}
           options={{headerShown: false}}
@@ -31,6 +32,11 @@ const AppNavigator = () => {
           name={'Main'}
           component={Main}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={'Chat'}
+          component={Chat}
+          options={{headerShown: true}}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -8,12 +8,15 @@ import {
   View,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import Users from '../tabs/Users';
+import Setting from '../tabs/Setting';
 
 const Main = () => {
   const [didTabSelected, SetDidTabSelect] = useState(0);
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1, backgroundColor: 'red'}}>
+      <View style={{flex: 1}}>
+        {didTabSelected == 0 ? <Users /> : <Setting/>}
         <View style={styles.bottomTab}>
           <TouchableOpacity style={styles.tab} onPress={()=>{SetDidTabSelect(0)}}>
             <Image

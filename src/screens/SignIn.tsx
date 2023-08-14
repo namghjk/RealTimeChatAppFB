@@ -42,17 +42,16 @@ const SignIn = () => {
         }
       })
       .catch(error => {
-        visible(false);
+        setVisible(false);
         console.log(error);
         Alert.alert('User not found');
       });
   };
-
-  const goToNext = async(name, email, userId) => {
-    await AsyncStorage.setItem("NAME",name);
-    await AsyncStorage.setItem("EMAIL",email);
-    await AsyncStorage.setItem("USERID",userId);
-    navigation.navigate('Main')
+  const goToNext = async (name, email, userId) => {
+    await AsyncStorage.setItem('NAME', name);
+    await AsyncStorage.setItem('EMAIL', email);
+    await AsyncStorage.setItem('USERID', userId);
+    navigation.navigate('Main');
   };
 
   return (
